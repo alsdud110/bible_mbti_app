@@ -1,59 +1,105 @@
 import 'package:bible_mbti_app/common/common.dart';
-import 'package:bible_mbti_app/common/widget/round_button_theme.dart';
-import 'package:bible_mbti_app/common/widget/w_round_button.dart';
 import 'package:bible_mbti_app/screen/dialog/d_message.dart';
+import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
+import 'package:bible_mbti_app/screen/main/tab/home/w_anser_button.dart';
+import 'package:bible_mbti_app/screen/main/tab/result/f_result.dart';
 import 'package:flutter/material.dart';
+import 'package:bible_mbti_app/screen/main/tab/home/question_dummies.dart';
+import 'package:get/get.dart';
 
 import '../../../dialog/d_color_bottom.dart';
 import '../../../dialog/d_confirm.dart';
 
-class HomeFragment extends StatelessWidget {
+class HomeFragment extends StatefulWidget {
   const HomeFragment({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<HomeFragment> createState() => _HomeFragmentState();
+}
+
+class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
+  @override
+  void initState() {
+    Get.put(ResultType());
+    // TODO: implement initState
+    super.initState();
+  }
+
+  int currentIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      color: context.appColors.seedColor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: () => openDrawer(context),
-                icon: const Icon(Icons.menu),
-              )
-            ],
-          ),
-          const EmptyExpanded(),
-          RoundButton(
-            text: 'Snackbar 보이기',
-            onTap: () => showSnackbar(context),
-            theme: RoundButtonTheme.blue,
-          ),
-          const Height(20),
-          RoundButton(
-            text: 'Confirm 다이얼로그',
-            onTap: () => showConfirmDialog(context),
-            theme: RoundButtonTheme.whiteWithBlueBorder,
-          ),
-          const Height(20),
-          RoundButton(
-            text: 'Message 다이얼로그',
-            onTap: showMessageDialog,
-            theme: RoundButtonTheme.whiteWithBlueBorder,
-          ),
-          const Height(20),
-          RoundButton(
-            text: '메뉴 보기',
-            onTap: () => openDrawer(context),
-            theme: RoundButtonTheme.blink,
-          ),
-          const EmptyExpanded()
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: "성경속 인물 MBTI".text.make(),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Question
+            currentIndex < 12
+                ? Expanded(
+                    flex: 4,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: context.appColors.divider),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                          child: questionList[currentIndex]
+                              .question
+                              .text
+                              .size(16)
+                              .make()),
+                    ),
+                  )
+                : Tap(
+                    onTap: () {
+                      resultData.getMBTI();
+                      print(resultData.result);
+                      Nav.push(ResultFragment());
+                    },
+                    child: Center(
+                      child: Container(
+                        child: "완료!!".text.bold.make(),
+                      ),
+                    ),
+                  ),
+            currentIndex < 12
+                ? Expanded(
+                    flex: 3,
+                    child: Column(
+                      children: [
+                        AnswerButton(
+                          answer: questionList[currentIndex].answer1.answer,
+                          onTap: () {
+                            resultData.userAnswerList.add(
+                                questionList[currentIndex].answer1.answerType);
+                            setState(() {
+                              currentIndex++;
+                            });
+                          },
+                        ),
+                        AnswerButton(
+                          answer: questionList[currentIndex].answer2.answer,
+                          onTap: () {
+                            resultData.userAnswerList.add(
+                                questionList[currentIndex].answer2.answerType);
+                            setState(() {
+                              currentIndex++;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  )
+                : const SizedBox(),
+          ],
+        ),
       ),
     );
   }

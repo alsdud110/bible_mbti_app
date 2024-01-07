@@ -15,7 +15,7 @@ class MainScreen extends StatefulWidget {
 class MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
   TabItem _currentTab = TabItem.home;
-  final tabs = [TabItem.home, TabItem.favorite];
+  final tabs = [TabItem.home, TabItem.profile];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
 
   int get _currentIndex => tabs.indexOf(_currentTab);
@@ -43,11 +43,8 @@ class MainScreenState extends State<MainScreen>
         body: Container(
           color: context.appColors.seedColor,
           padding: EdgeInsets.only(
-              bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
-          child: SafeArea(
-            bottom: !extendBody,
-            child: pages,
-          ),
+              bottom: extendBody ? 100 - bottomNavigationBarBorderRadius : 0),
+          child: pages,
         ),
         bottomNavigationBar: _buildBottomNavigationBar(context),
       ),
