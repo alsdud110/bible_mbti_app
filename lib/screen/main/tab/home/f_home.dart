@@ -5,6 +5,7 @@ import 'package:bible_mbti_app/screen/main/tab/home/w_anser_button.dart';
 import 'package:bible_mbti_app/screen/main/tab/result/f_result.dart';
 import 'package:flutter/material.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/question_dummies.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 import '../../../dialog/d_color_bottom.dart';
@@ -28,6 +29,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
   }
 
   int currentIndex = 0;
+  bool _tapped = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,54 +51,67 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                         border: Border.all(color: context.appColors.divider),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Center(
-                          child: questionList[currentIndex]
-                              .question
-                              .text
-                              .size(16)
-                              .make()),
+                      child: AnimatedSwitcher(
+                        duration: 1000.ms,
+                        child: Center(
+                            key: ValueKey<int>(currentIndex),
+                            child: questionList[currentIndex]
+                                .question
+                                .text
+                                .size(16)
+                                .make()),
+                      ),
                     ),
-                  )
+                  ).animate().fadeIn(duration: 1000.ms)
                 : Tap(
                     onTap: () {
                       resultData.getMBTI();
-                      print(resultData.result);
                       Nav.push(ResultFragment());
                     },
                     child: Center(
-                      child: Container(
-                        child: "완료!!".text.bold.make(),
-                      ),
+                      child: Container(child: "완료!!".text.size(28).bold.make()),
                     ),
-                  ),
+                  ).animate().shake(duration: 1000.ms, hz: 10),
             currentIndex < 12
                 ? Expanded(
                     flex: 3,
                     child: Column(
                       children: [
-                        AnswerButton(
-                          answer: questionList[currentIndex].answer1.answer,
-                          onTap: () {
-                            resultData.userAnswerList.add(
-                                questionList[currentIndex].answer1.answerType);
-                            setState(() {
-                              currentIndex++;
-                            });
-                          },
+                        AnimatedSwitcher(
+                          duration: 1000.ms,
+                          child: AnswerButton(
+                            key: ValueKey<int>(currentIndex), // 키 값을 현재 인덱스로 설정
+                            answer: questionList[currentIndex].answer1.answer,
+                            onTap: () {
+                              resultData.userAnswerList.add(
+                                questionList[currentIndex].answer1.answerType,
+                              );
+                              setState(() {
+                                currentIndex++;
+                                _tapped = true;
+                              });
+                            },
+                          ),
                         ),
-                        AnswerButton(
-                          answer: questionList[currentIndex].answer2.answer,
-                          onTap: () {
-                            resultData.userAnswerList.add(
-                                questionList[currentIndex].answer2.answerType);
-                            setState(() {
-                              currentIndex++;
-                            });
-                          },
+                        AnimatedSwitcher(
+                          duration: 1000.ms,
+                          child: AnswerButton(
+                            key: ValueKey<int>(currentIndex), // 키 값을 현재 인덱스로 설정
+                            answer: questionList[currentIndex].answer2.answer,
+                            onTap: () {
+                              resultData.userAnswerList.add(
+                                questionList[currentIndex].answer2.answerType,
+                              );
+                              setState(() {
+                                currentIndex++;
+                                _tapped = true;
+                              });
+                            },
+                          ),
                         ),
                       ],
                     ),
-                  )
+                  ).animate().fadeIn(duration: 1000.ms)
                 : const SizedBox(),
           ],
         ),
