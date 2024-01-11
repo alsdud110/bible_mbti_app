@@ -6,11 +6,11 @@ abstract mixin class ResultTypeProvier {
 
 class ResultType extends GetxController {
   List<String> userAnswerList = [];
-  String result = "";
+  RxString result = "".obs;
 
   void getMBTI() {
     List<String> resultList = extractMultipleOccurrences(userAnswerList);
-    result = finalResult(resultList).join();
+    result.value = finalResult(resultList).join();
   }
 
   List<String> extractMultipleOccurrences(List<String> userAnswerList) {
