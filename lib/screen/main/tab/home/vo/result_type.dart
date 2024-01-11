@@ -10,7 +10,7 @@ class ResultType extends GetxController {
 
   void getMBTI() {
     List<String> resultList = extractMultipleOccurrences(userAnswerList);
-    result = resultList.join();
+    result = finalResult(resultList).join();
   }
 
   List<String> extractMultipleOccurrences(List<String> userAnswerList) {
@@ -26,5 +26,23 @@ class ResultType extends GetxController {
         occurrences.keys.where((key) => occurrences[key]! > 1).toList();
 
     return result;
+  }
+
+  List<String> finalResult(List<String> resultList) {
+    print(resultList);
+    print(resultList.length);
+    List<String> resultFinalList = List<String>.filled(4, "");
+    for (int i = 0; i < resultList.length; i++) {
+      if (resultList[i] == "E" || resultList[i] == "I") {
+        resultFinalList[0] = resultList[i];
+      } else if (resultList[i] == "S" || resultList[i] == "N") {
+        resultFinalList[1] = resultList[i];
+      } else if (resultList[i] == "T" || resultList[i] == "F") {
+        resultFinalList[2] = resultList[i];
+      } else {
+        resultFinalList[3] = resultList[i];
+      }
+    }
+    return resultFinalList;
   }
 }

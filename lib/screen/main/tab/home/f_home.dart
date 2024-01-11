@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bible_mbti_app/common/common.dart';
 import 'package:bible_mbti_app/screen/dialog/d_message.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
@@ -24,12 +26,26 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
   @override
   void initState() {
     Get.put(ResultType());
+    generateRandomNumber();
     // TODO: implement initState
     super.initState();
   }
 
   int currentIndex = 0;
-  bool _tapped = false;
+  List<int> selectedNumbers = [];
+
+  void generateRandomNumber() {
+    Random random = Random();
+    int randomNumber;
+
+    do {
+      randomNumber = random.nextInt(12);
+    } while (selectedNumbers.contains(randomNumber));
+
+    setState(() {
+      selectedNumbers.add(randomNumber);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +63,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                 ? Expanded(
                     flex: 4,
                     child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
                         border: Border.all(color: context.appColors.divider),
                         borderRadius: BorderRadius.circular(20),
@@ -55,7 +72,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                         duration: 1000.ms,
                         child: Center(
                             key: ValueKey<int>(currentIndex),
-                            child: questionList[currentIndex]
+                            child: questionList[selectedNumbers[currentIndex]]
                                 .question
                                 .text
                                 .size(16)
@@ -81,15 +98,21 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                           duration: 1000.ms,
                           child: AnswerButton(
                             key: ValueKey<int>(currentIndex), // 키 값을 현재 인덱스로 설정
-                            answer: questionList[currentIndex].answer1.answer,
+                            answer: questionList[selectedNumbers[currentIndex]]
+                                .answer1
+                                .answer,
                             onTap: () {
                               resultData.userAnswerList.add(
-                                questionList[currentIndex].answer1.answerType,
+                                questionList[selectedNumbers[currentIndex]]
+                                    .answer1
+                                    .answerType,
                               );
                               setState(() {
                                 currentIndex++;
-                                _tapped = true;
                               });
+                              if (currentIndex < 12) {
+                                generateRandomNumber();
+                              }
                             },
                           ),
                         ),
@@ -97,15 +120,21 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                           duration: 1000.ms,
                           child: AnswerButton(
                             key: ValueKey<int>(currentIndex), // 키 값을 현재 인덱스로 설정
-                            answer: questionList[currentIndex].answer2.answer,
+                            answer: questionList[selectedNumbers[currentIndex]]
+                                .answer2
+                                .answer,
                             onTap: () {
                               resultData.userAnswerList.add(
-                                questionList[currentIndex].answer2.answerType,
+                                questionList[selectedNumbers[currentIndex]]
+                                    .answer2
+                                    .answerType,
                               );
                               setState(() {
                                 currentIndex++;
-                                _tapped = true;
                               });
+                              if (currentIndex < 12) {
+                                generateRandomNumber();
+                              }
                             },
                           ),
                         ),

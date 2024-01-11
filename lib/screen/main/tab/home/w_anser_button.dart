@@ -17,12 +17,12 @@ class AnswerButton extends StatelessWidget {
         onTap: onTap,
         child: Container(
           height: 70,
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           decoration: BoxDecoration(
             color: context.appColors.inActivate,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Center(child: answer.text.make()),
+          child: Center(child: answer.text.size(16).maxLines(2).make()),
         ),
       ),
     );

@@ -21,45 +21,42 @@ final questionList = [
     answer2: AnswerType(answer: "(어머머 웬일이야)반갑다 오랜만이야!", answerType: "E"),
   ),
   QuestionAnswer(
-    question: "감동적인 영화를 볼 때 나는?",
+    question: "여행가는 기차 안에서 무슨 생각해",
+    questionType: "SN",
+    answer1: AnswerType(answer: "무슨 노래 듣지~?~?", answerType: "S"),
+    answer2: AnswerType(answer: "기차 갑자기 고장나면 어떡하지..?", answerType: "N"),
+  ),
+  QuestionAnswer(
+    question: "버스에서 눈 내리는 밖을 바라보며",
     questionType: "SN",
     answer1:
-        AnswerType(answer: "오! 정말 영화 잘 만들었네! 한 번 더 봐야겠어!", answerType: "S"),
-    answer2: AnswerType(answer: "흑흑흫흫규규흐흫규ㅠㅠ", answerType: "N"),
+        AnswerType(answer: "버스는 안 미끄러지나.. 도대체 몇시까지 눈이 오는거지?", answerType: "N"),
+    answer2: AnswerType(answer: "눈싸움 하고 싶다.. 눈으로 오리 만들고싶다!!", answerType: "S"),
   ),
   QuestionAnswer(
-    question: "자고 일어났더니 낯선 환경에 내가 있다는 이런 상황일 때 나는? ",
+    question: "만약에 내가 잠들었다가 다음날 괴물로 일어나면 어떡해?",
     questionType: "SN",
-    answer1: AnswerType(answer: "기왕 이렇게 된 거 그 상황을 즐긴다.", answerType: "N"),
-    answer2: AnswerType(
-        answer: "즐기기보단 앞으로의 상황을 생각해 살 수 있는 궁리를 한다.", answerType: "S"),
+    answer1: AnswerType(answer: "그럼 예쁜 괴물이야 아니면 무서운 괴물이야?", answerType: "N"),
+    answer2: AnswerType(answer: "그럴 일 없어 쓸모없는 걱정임ㅇㅇ", answerType: "S"),
   ),
   QuestionAnswer(
-    question: "오늘 친한 친구와 싸웠다, 자기 전의 행동은?",
-    questionType: "SN",
-    answer1: AnswerType(answer: "저절로 잠들기 전까지 생각하다 잠든다.", answerType: "N"),
-    answer2: AnswerType(answer: "졸리니까 일단 자자....", answerType: "S"),
-  ),
-  QuestionAnswer(
-    question: "누군가가 실수를 했을 때 뭐라 말해 줄까?",
+    question: "시험을 너무 못 본 것 같아,, 어쩌지?",
     questionType: "TF",
-    answer1:
-        AnswerType(answer: "위로해주되 정확히 분석하여 앞으로는 그러지 않게 도와준다.", answerType: "T"),
-    answer2: AnswerType(answer: "위로해주면서 공감을 해준다.", answerType: "F"),
+    answer1: AnswerType(answer: "몇점 받았는데?", answerType: "T"),
+    answer2: AnswerType(answer: "잘 봤을거야! 너무 속상해하지마~", answerType: "F"),
   ),
   QuestionAnswer(
-    question: "여행지에서 관광상품을 사 가려고 한다 나는? ",
+    question: "나 감기가 너무 심해서 약속을 미뤄야 할 것 같아ㅠㅠ ",
     questionType: "TF",
-    answer1: AnswerType(answer: "정말로 필요한 물품들을 사 간다.", answerType: "T"),
-    answer2: AnswerType(
-        answer: "기왕 여행 온 거 관광지 특유의 관광상품을 사간다(EX.돌하르방 모형)", answerType: "F"),
+    answer1: AnswerType(
+        answer: "병원가서 약 처방 받았어? 약속은 다시 잡으면 되니까 걱정하지마..", answerType: "T"),
+    answer2: AnswerType(answer: "정말?? 어떡해ㅠㅠ 많이 아픈거야?", answerType: "F"),
   ),
   QuestionAnswer(
-    question: "모르는 사람들과 파티를 한다. 그 상황에서 나는?",
+    question: "나 너무 우울해서 쇼핑을 잔뜩했다??",
     questionType: "TF",
-    answer1:
-        AnswerType(answer: "조용히 뒤에 있다가 속으로 에잇! 하고 그냥 자러간다.", answerType: "T"),
-    answer2: AnswerType(answer: "같이 술 마시며 분위기를 휘어잡는다.", answerType: "F"),
+    answer1: AnswerType(answer: "정말? 뭐 샀는데?", answerType: "T"),
+    answer2: AnswerType(answer: "왜 우울해.. 무슨일 생겼어?", answerType: "F"),
   ),
   QuestionAnswer(
     question: "애인: 우리 내일 여행가잖아~ 계획 세워보자! 나의 대답은? ",
