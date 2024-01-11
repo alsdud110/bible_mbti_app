@@ -1,5 +1,4 @@
 import 'package:bible_mbti_app/common/dart/extension/context_extension.dart';
-import 'package:bible_mbti_app/common/widget/w_round_button.dart';
 import 'package:bible_mbti_app/common/widget/w_tap.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
