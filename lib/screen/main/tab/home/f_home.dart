@@ -4,7 +4,6 @@ import 'package:bible_mbti_app/common/common.dart';
 import 'package:bible_mbti_app/screen/dialog/d_message.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/w_anser_button.dart';
-import 'package:bible_mbti_app/screen/main/tab/result/f_result.dart';
 import 'package:flutter/material.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/question_dummies.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -23,6 +22,7 @@ class HomeFragment extends StatefulWidget {
 }
 
 class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
+  Key _homeFragmentKey = UniqueKey();
   @override
   void initState() {
     Get.put(ResultType());
@@ -80,14 +80,26 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                       ),
                     ),
                   ).animate().fadeIn(duration: 1000.ms)
-                : Tap(
-                    onTap: () {
-                      resultData.getMBTI();
-                      Nav.push(ResultFragment());
-                    },
-                    child: Center(
-                      child: Container(child: "완료!!".text.size(28).bold.make()),
-                    ),
+                : Center(
+                    child: Container(
+                        child: Column(
+                      children: [
+                        "내 결과에서 확인!!".text.size(28).bold.make(),
+                        Tap(
+                          onTap: () {
+                            setState(() {
+                              currentIndex = 0;
+                              selectedNumbers.clear();
+                              generateRandomNumber();
+                              resultData.userAnswerList.clear();
+                              // UniqueKey로 key를 변경하여 새로운 HomeFragment 생성
+                              _homeFragmentKey = UniqueKey();
+                            });
+                          },
+                          child: "다시 하기".text.bold.size(20).make(),
+                        )
+                      ],
+                    )),
                   ).animate().shake(duration: 1000.ms, hz: 10),
             currentIndex < 12
                 ? Expanded(
@@ -113,6 +125,9 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                               if (currentIndex < 12) {
                                 generateRandomNumber();
                               }
+                              if (currentIndex == 12) {
+                                resultData.getMBTI();
+                              }
                             },
                           ),
                         ),
@@ -134,6 +149,9 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                               });
                               if (currentIndex < 12) {
                                 generateRandomNumber();
+                              }
+                              if (currentIndex == 12) {
+                                resultData.getMBTI();
                               }
                             },
                           ),
