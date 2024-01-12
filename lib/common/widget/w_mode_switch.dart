@@ -36,12 +36,12 @@ class _ModeSwitchState extends State<ModeSwitch> {
       onTap: () => widget.onChanged(!widget.value),
       child: Row(
         children: [
-          'Light'
-              .text
-              .size(14)
-              .color(widget.value ? context.appColors.inActivate : context.appColors.activate)
-              .bold
-              .makeWithDefaultFont(),
+          // 'Light'
+          //     .text
+          //     .size(14)
+          //     .color(widget.value ? context.appColors.inActivate : context.appColors.activate)
+          //     .bold
+          //     .makeWithDefaultFont(),
           const Width(5),
           SizedBox(
             height: widget.height,
@@ -58,8 +58,11 @@ class _ModeSwitchState extends State<ModeSwitch> {
                 ),
                 AnimatedContainer(
                   duration: duration,
-                  padding: EdgeInsets.symmetric(horizontal: (2 / 25) * widget.height),
-                  alignment: widget.value ? Alignment.centerRight : Alignment.centerLeft,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: (2 / 25) * widget.height),
+                  alignment: widget.value
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Stack(
                     children: [
                       Container(
@@ -85,12 +88,12 @@ class _ModeSwitchState extends State<ModeSwitch> {
             ),
           ),
           const Width(5),
-          'Dark'
-              .text
-              .size(14)
-              .color(widget.value ? context.appColors.activate : context.appColors.inActivate)
-              .bold
-              .makeWithDefaultFont(),
+          // 'Dark'
+          //     .text
+          //     .size(14)
+          //     .color(widget.value ? context.appColors.activate : context.appColors.inActivate)
+          //     .bold
+          //     .makeWithDefaultFont(),
         ],
       ),
     );

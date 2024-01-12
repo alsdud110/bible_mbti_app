@@ -15,6 +15,9 @@ class _ResultFragmentState extends State<ResultFragment>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: "나의 성경 인물 속 MBTI는?".text.make(),
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 28),
         child: Obx(

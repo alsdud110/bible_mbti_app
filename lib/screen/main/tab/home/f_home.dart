@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:bible_mbti_app/common/common.dart';
+import 'package:bible_mbti_app/common/theme/theme_util.dart';
+import 'package:bible_mbti_app/common/widget/w_mode_switch.dart';
 import 'package:bible_mbti_app/screen/dialog/d_message.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/w_anser_button.dart';
@@ -51,6 +53,22 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: ModeSwitch(
+              value: VxContextExtensions(context).isDarkMode,
+              onChanged: (value) {
+                ThemeUtil.toggleTheme(context);
+              },
+              height: 30,
+              activeThumbImage: Image.asset('$basePath/darkmode/moon.png'),
+              inactiveThumbImage: Image.asset('$basePath/darkmode/sun.png'),
+              activeThumbColor: Colors.transparent,
+              inactiveThumbColor: Colors.transparent,
+            ).pOnly(left: 20, right: 6),
+          ),
+        ],
         title: "성경속 인물 MBTI".text.make(),
       ),
       body: Padding(
@@ -69,7 +87,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: AnimatedSwitcher(
-                        duration: 1000.ms,
+                        duration: 300.ms,
                         child: Center(
                             key: ValueKey<int>(currentIndex),
                             child: questionList[selectedNumbers[currentIndex]]
@@ -79,7 +97,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                                 .make()),
                       ),
                     ),
-                  ).animate().fadeIn(duration: 1000.ms)
+                  ).animate().fadeIn(duration: 300.ms)
                 : Center(
                     child: Container(
                         child: Column(
@@ -100,14 +118,14 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                         )
                       ],
                     )),
-                  ).animate().shake(duration: 1000.ms, hz: 10),
+                  ).animate().shake(duration: 600.ms, hz: 10),
             currentIndex < 12
                 ? Expanded(
                     flex: 3,
                     child: Column(
                       children: [
                         AnimatedSwitcher(
-                          duration: 1000.ms,
+                          duration: 300.ms,
                           child: AnswerButton(
                             key: ValueKey<int>(currentIndex), // 키 값을 현재 인덱스로 설정
                             answer: questionList[selectedNumbers[currentIndex]]
@@ -132,7 +150,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                           ),
                         ),
                         AnimatedSwitcher(
-                          duration: 1000.ms,
+                          duration: 300.ms,
                           child: AnswerButton(
                             key: ValueKey<int>(currentIndex), // 키 값을 현재 인덱스로 설정
                             answer: questionList[selectedNumbers[currentIndex]]
@@ -158,7 +176,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                         ),
                       ],
                     ),
-                  ).animate().fadeIn(duration: 1000.ms)
+                  ).animate().fadeIn(duration: 300.ms)
                 : const SizedBox(),
           ],
         ),
