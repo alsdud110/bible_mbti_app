@@ -1,5 +1,4 @@
 import 'package:bible_mbti_app/common/constants.dart';
-import 'package:bible_mbti_app/common/dart/extension/context_extension.dart';
 import 'package:bible_mbti_app/common/widget/w_clipoval_container.dart';
 import 'package:bible_mbti_app/common/widget/w_mbti_info.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';

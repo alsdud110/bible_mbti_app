@@ -24,6 +24,7 @@ class HomeFragment extends StatefulWidget {
 }
 
 class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
+  // ignore: unused_field
   Key _homeFragmentKey = UniqueKey();
   @override
   void initState() {

@@ -5,6 +5,7 @@ import 'package:bible_mbti_app/common/widget/w_mbti_info.dart';
 import 'package:bible_mbti_app/screen/main/tab/result/vo/resultVO.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class MbtiDetail extends StatelessWidget {
   String mbti;
   MbtiDetail({super.key, required this.mbti});
