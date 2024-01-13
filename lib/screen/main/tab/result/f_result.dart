@@ -26,12 +26,7 @@ class _ResultFragmentState extends State<ResultFragment>
         child: Obx(
           () => Center(
             child: resultData.result.isEmpty
-                ? "테스트를 먼저 완료해야 나의 유형을 알 수 있습니다."
-                    .text
-                    .bold
-                    .size(22)
-                    .make()
-                    .centered()
+                ? "테스트를 먼저 완료해야 나의 유형을 알 수 있습니다.".text.bold.size(16).make()
                 : Column(
                     children: [
                       ClipRRect(
