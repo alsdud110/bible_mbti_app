@@ -89,11 +89,37 @@ Map<String, ResultVO> resultMap = {
       char1: "영적인 감정들과 생각들을 조용히, 깊이 있게 대하는 사람",
       char2: "따스한 사람이고, 책임감과 때론 죄책감까지도 짊어짐",
       char3: "기도와 예배를 매일 드림에 있어서 자연스럽고, 실천을 통해 자신을 나타냄"),
+  "ENFP": ResultVO(
+      mbti: "ENFP",
+      person: "베드로",
+      char1: "노래, 말, 찬양, 행동으로 믿음을 표현하는 것을 가치 있게 여김",
+      char2: "은사를 의욕적으로 이행함",
+      char3: "어린아이 같은 면이 있음"),
+  "ENFJ": ResultVO(
+      mbti: "ENFJ",
+      person: "요나단",
+      char1: "자신의 시간과 노력을 기꺼이 다른 이에게 헌신함",
+      char2: "여러 생각을 말씀에 적용하는 능력이 뛰어나 훌륭한 영적 멘토가 될 수 있음",
+      char3: "말로 사람의 마음을 움직이게 하는 능력이 탁월함"),
+  "ISTP": ResultVO(
+      mbti: "ISTP",
+      person: "노아",
+      char1: "자신이 믿는 것에 대해 열정을 갖고, 신념을 지켜나감",
+      char2: "사회나 청년 사역에서 섬기는 역할을 많이함",
+      char3: "대부분 사회 모임에 참여하길 꺼리고, 옳고 그름에 민감한 사상가"),
+  "ISTJ": ResultVO(
+      mbti: "ISTJ",
+      person: "아브라함",
+      char1: "교회에서 중요한 역할을 맡는 사람이고, 신뢰감 있고 안정적인 타입",
+      char2: "진리에 대한 욕심이 많음",
+      char3: "즉흥적인 것을 싫어하고 계획 세우는 것을 잘함"),
 };
 
 List<String> mbtiList = [
   "ENTJ",
   "ENTP",
+  "ENFJ",
+  "ENFP",
   "ESFJ",
   "ESFP",
   "ESTJ",
@@ -103,11 +129,15 @@ List<String> mbtiList = [
   "INTJ",
   "INTP",
   "ISFJ",
-  "ISFP"
+  "ISFP",
+  "ISTJ",
+  "ISTP",
 ];
 
 // ENTJ - 바울
 // ENTP - 에훗
+// ENFP - 베드로
+// ENFJ - 요나단
 // ESFJ - 요한
 // ESFP - 야고보
 // ESTJ - 여호수아
@@ -118,3 +148,5 @@ List<String> mbtiList = [
 // INTP - 솔로몬
 // ISFJ - 마리아 
 // ISFP - 아담
+// ISTP - 노아
+// ISTJ - 아브라함
