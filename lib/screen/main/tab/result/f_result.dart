@@ -39,7 +39,7 @@ class _ResultFragmentState extends State<ResultFragment>
                         child: Image.asset(
                           "$baseMbtiPath/${resultMap[resultData.result.value]?.mbtiImgPath}",
                           width: double.infinity,
-                          height: 300,
+                          height: 305,
                         ),
                       ).pOnly(top: 20),
                       "${resultMap[resultData.result.value]?.mbti}"
