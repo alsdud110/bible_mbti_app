@@ -1,5 +1,7 @@
 import 'package:bible_mbti_app/common/common.dart';
 import 'package:bible_mbti_app/common/constants.dart';
+import 'package:bible_mbti_app/common/widget/w_clipoval_container.dart';
+import 'package:bible_mbti_app/common/widget/w_mbti_info.dart';
 import 'package:bible_mbti_app/screen/main/tab/result/vo/resultVO.dart';
 import 'package:flutter/material.dart';
 
@@ -23,55 +25,18 @@ class MbtiDetail extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: context.appColors.blurColor.withOpacity(0.6),
-                            spreadRadius: 10,
-                            blurRadius: 13,
-                            offset: const Offset(0, 0),
-                          )
-                        ],
-                      ),
-                      child: ClipOval(
-                        child: Image.asset(
-                          "$baseMbtiPath/${resultMap[mbti]?.mbtiImgPath}",
-                          width: double.infinity,
-                          height: 305,
-                        ),
-                      ),
-                    ).pOnly(top: 20),
-                    "${resultMap[mbti]?.mbti}"
-                        .text
-                        .bold
-                        .size(28)
-                        .make()
-                        .pOnly(top: 16),
-                    "${resultMap[mbti]?.person}".text.bold.size(20).make(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        "• ${resultMap[mbti]?.char1}"
-                            .text
-                            .size(16)
-                            .make()
-                            .pOnly(bottom: 8),
-                        "• ${resultMap[mbti]?.char2}"
-                            .text
-                            .size(16)
-                            .make()
-                            .pOnly(bottom: 8),
-                        "• ${resultMap[mbti]?.char3}"
-                            .text
-                            .size(16)
-                            .make()
-                            .pOnly(bottom: 8),
-                      ],
-                    ).pOnly(top: 26),
+                    RoundedContainer(
+                      imgPath: "$baseMbtiPath/${resultMap[mbti]?.mbtiImgPath}",
+                    ),
+                    MbtiInfo(
+                      mbti: "${resultMap[mbti]?.mbti}",
+                      person: "${resultMap[mbti]?.person}",
+                      char1: "${resultMap[mbti]?.char1}",
+                      char2: "${resultMap[mbti]?.char2}",
+                      char3: "${resultMap[mbti]?.char3}",
+                    ),
                   ],
-                ).pSymmetric(h: 16),
+                ),
               ),
             ),
           ),

@@ -1,5 +1,7 @@
 import 'package:bible_mbti_app/common/constants.dart';
 import 'package:bible_mbti_app/common/dart/extension/context_extension.dart';
+import 'package:bible_mbti_app/common/widget/w_clipoval_container.dart';
+import 'package:bible_mbti_app/common/widget/w_mbti_info.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
 import 'package:bible_mbti_app/screen/main/tab/result/vo/resultVO.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +21,12 @@ class _ResultFragmentState extends State<ResultFragment>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: resultData.result.isEmpty
+        title: Obx(
+          () => resultData.result.isEmpty
               ? "나의 성경 인물 속 MBTI는?".text.make()
-              : resultData.result.value.text.size(30).bold.make()),
+              : resultData.result.value.text.size(30).bold.make(),
+        ),
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 28),
         child: Obx(
@@ -30,60 +35,19 @@ class _ResultFragmentState extends State<ResultFragment>
                 ? "테스트를 먼저 완료해야 나의 유형을 알 수 있습니다.".text.bold.size(16).make()
                 : Column(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color:
-                                  context.appColors.blurColor.withOpacity(0.6),
-                              spreadRadius: 10,
-                              blurRadius: 13,
-                              offset: const Offset(0, 0),
-                            ),
-                          ],
-                        ),
-                        child: ClipOval(
-                          child: Image.asset(
+                      RoundedContainer(
+                        imgPath:
                             "$baseMbtiPath/${resultMap[resultData.result.value]?.mbtiImgPath}",
-                            width: double.infinity,
-                            height: 305,
-                          ),
-                        ),
-                      ).pOnly(top: 20),
-                      "${resultMap[resultData.result.value]?.mbti}"
-                          .text
-                          .bold
-                          .size(28)
-                          .make()
-                          .pOnly(top: 16),
-                      "${resultMap[resultData.result.value]?.person}"
-                          .text
-                          .bold
-                          .size(20)
-                          .make(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          "• ${resultMap[resultData.result.value]?.char1}"
-                              .text
-                              .size(16)
-                              .make()
-                              .pOnly(bottom: 8),
-                          "• ${resultMap[resultData.result.value]?.char2}"
-                              .text
-                              .size(16)
-                              .make()
-                              .pOnly(bottom: 8),
-                          "• ${resultMap[resultData.result.value]?.char3}"
-                              .text
-                              .size(16)
-                              .make()
-                              .pOnly(bottom: 8),
-                        ],
-                      ).pOnly(top: 26),
+                      ),
+                      MbtiInfo(
+                        mbti: "${resultMap[resultData.result.value]?.mbti}",
+                        person: "${resultMap[resultData.result.value]?.person}",
+                        char1: "${resultMap[resultData.result.value]?.char1}",
+                        char2: "${resultMap[resultData.result.value]?.char2}",
+                        char3: "${resultMap[resultData.result.value]?.char3}",
+                      ),
                     ],
-                  ).pSymmetric(h: 16),
+                  ),
           ),
         ),
       ),
