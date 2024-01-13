@@ -1,4 +1,5 @@
 import 'package:bible_mbti_app/common/constants.dart';
+import 'package:bible_mbti_app/common/dart/extension/context_extension.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
 import 'package:bible_mbti_app/screen/main/tab/result/vo/resultVO.dart';
 import 'package:flutter/material.dart';
@@ -29,12 +30,25 @@ class _ResultFragmentState extends State<ResultFragment>
                 ? "테스트를 먼저 완료해야 나의 유형을 알 수 있습니다.".text.bold.size(16).make()
                 : Column(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(170),
-                        child: Image.asset(
-                          "$baseMbtiPath/${resultMap[resultData.result.value]?.mbtiImgPath}",
-                          width: double.infinity,
-                          height: 305,
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color:
+                                  context.appColors.blurColor.withOpacity(0.6),
+                              spreadRadius: 10,
+                              blurRadius: 13,
+                              offset: const Offset(0, 0),
+                            ),
+                          ],
+                        ),
+                        child: ClipOval(
+                          child: Image.asset(
+                            "$baseMbtiPath/${resultMap[resultData.result.value]?.mbtiImgPath}",
+                            width: double.infinity,
+                            height: 305,
+                          ),
                         ),
                       ).pOnly(top: 20),
                       "${resultMap[resultData.result.value]?.mbti}"

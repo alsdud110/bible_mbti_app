@@ -42,4 +42,7 @@ class DarkAppColors extends AbstractThemeColors {
 
   @override
   Color get blueButtonBackground => AppColors.blue;
+
+  @override
+  Color get blurColor => AppColors.brightGrey;
 }

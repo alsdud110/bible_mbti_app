@@ -23,12 +23,24 @@ class MbtiDetail extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(170),
-                      child: Image.asset(
-                        "$baseMbtiPath/${resultMap[mbti]?.mbtiImgPath}",
-                        width: double.infinity,
-                        height: 305,
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: context.appColors.blurColor.withOpacity(0.6),
+                            spreadRadius: 10,
+                            blurRadius: 13,
+                            offset: const Offset(0, 0),
+                          )
+                        ],
+                      ),
+                      child: ClipOval(
+                        child: Image.asset(
+                          "$baseMbtiPath/${resultMap[mbti]?.mbtiImgPath}",
+                          width: double.infinity,
+                          height: 305,
+                        ),
                       ),
                     ).pOnly(top: 20),
                     "${resultMap[mbti]?.mbti}"
