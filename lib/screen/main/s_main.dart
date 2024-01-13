@@ -3,7 +3,6 @@ import 'package:bible_mbti_app/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/common.dart';
-import 'w_menu_drawer.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,11 +14,7 @@ class MainScreen extends StatefulWidget {
 class MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
   TabItem _currentTab = TabItem.home;
-  final tabs = [
-    TabItem.home,
-    TabItem.result,
-    TabItem.profile,
-  ];
+  final tabs = [TabItem.home, TabItem.result, TabItem.profile, TabItem.info];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
 
   int get _currentIndex => tabs.indexOf(_currentTab);

@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 enum TabItem {
   home(Icons.home, '테스트', HomeFragment()),
   result(Icons.check_circle_outline, '내 결과', ResultFragment()),
-  profile(Icons.person, '16인의 성경인물', ProfileFragment());
+  profile(Icons.person, '16인의 성경인물', ProfileFragment()),
+  info(Icons.info_outlined, '정보', InfoFragment());
   // favorite(Icons.star, '즐겨찾기', FavoriteFragment(isShowBackButton: false));
 
   final IconData activeIcon;
