@@ -1,5 +1,4 @@
 import 'package:bible_mbti_app/common/common.dart';
-import 'package:bible_mbti_app/common/constants.dart';
 import 'package:bible_mbti_app/common/dart/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 

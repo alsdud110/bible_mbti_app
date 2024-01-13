@@ -1,5 +1,4 @@
 import 'package:bible_mbti_app/common/common.dart';
-import 'package:bible_mbti_app/screen/main/tab/result/vo/resultVO.dart';
 import 'package:flutter/material.dart';
 
 class MbtiInfo extends StatelessWidget {
