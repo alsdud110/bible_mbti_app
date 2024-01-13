@@ -91,6 +91,21 @@ Map<String, ResultVO> resultMap = {
       char3: "기도와 예배를 매일 드림에 있어서 자연스럽고, 실천을 통해 자신을 나타냄"),
 };
 
+List<String> mbtiList = [
+  "ENTJ",
+  "ENTP",
+  "ESFJ",
+  "ESFP",
+  "ESTJ",
+  "ESTP",
+  "INFJ",
+  "INFP",
+  "INTJ",
+  "INTP",
+  "ISFJ",
+  "ISFP"
+];
+
 // ENTJ - 바울
 // ENTP - 에훗
 // ESFJ - 요한
