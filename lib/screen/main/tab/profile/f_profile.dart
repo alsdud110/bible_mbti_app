@@ -17,6 +17,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
     return Scaffold(
       appBar: AppBar(
         title: "16인의 성경인물".text.make(),
+        scrolledUnderElevation: 0.0,
       ),
       body: SingleChildScrollView(
         child: Wrap(
