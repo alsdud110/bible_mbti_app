@@ -4,6 +4,7 @@ import 'package:bible_mbti_app/common/widget/w_mbti_info.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
 import 'package:bible_mbti_app/screen/main/tab/result/vo/resultVO.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -23,7 +24,14 @@ class _ResultFragmentState extends State<ResultFragment>
         title: Obx(
           () => resultData.result.isEmpty
               ? "나의 성경 인물 속 MBTI는?".text.make()
-              : resultData.result.value.text.size(30).bold.make(),
+              : "나의 결과는?"
+                  .text
+                  .bold
+                  .size(30)
+                  .bold
+                  .make()
+                  .animate()
+                  .scaleXY(duration: 800.ms),
         ),
       ),
       body: Container(
@@ -44,6 +52,8 @@ class _ResultFragmentState extends State<ResultFragment>
                         char1: "${resultMap[resultData.result.value]?.char1}",
                         char2: "${resultMap[resultData.result.value]?.char2}",
                         char3: "${resultMap[resultData.result.value]?.char3}",
+                        desc1: "${resultMap[resultData.result.value]?.desc1}",
+                        desc2: "${resultMap[resultData.result.value]?.desc2}",
                       ),
                     ],
                   ),

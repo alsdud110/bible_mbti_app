@@ -40,7 +40,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                       child: Stack(
                         children: [
                           Opacity(
-                            opacity: 0.58,
+                            opacity: 0.42,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(170),
                               child: Image.asset(

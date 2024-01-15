@@ -21,11 +21,11 @@ class RoundedContainer extends StatelessWidget {
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(170),
+        borderRadius: BorderRadius.circular(90),
         child: Image.asset(
           imgPath,
-          width: double.infinity,
-          height: 337,
+          width: 180,
+          height: 180,
         ),
       ),
     ).pOnly(top: 26);

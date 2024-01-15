@@ -35,6 +35,8 @@ class MbtiDetail extends StatelessWidget {
                       char1: "${resultMap[mbti]?.char1}",
                       char2: "${resultMap[mbti]?.char2}",
                       char3: "${resultMap[mbti]?.char3}",
+                      desc1: "${resultMap[mbti]?.desc1}",
+                      desc2: "${resultMap[mbti]?.desc2}",
                     ),
                   ],
                 ),
