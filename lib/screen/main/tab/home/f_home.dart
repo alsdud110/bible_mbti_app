@@ -6,6 +6,7 @@ import 'package:bible_mbti_app/common/widget/w_mode_switch.dart';
 import 'package:bible_mbti_app/screen/dialog/d_message.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/w_anser_button.dart';
+import 'package:bible_mbti_app/screen/main/tab/result/f_result.dart';
 import 'package:flutter/material.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/question_dummies.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -50,6 +51,24 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
     });
   }
 
+  void _incrementIndex() {
+    setState(() {
+      currentIndex++;
+      if (currentIndex == 12) {
+        // 만약 currentIndex가 12가 되면 2초 후에 네비게이션
+        Future.delayed(1500.ms, () {
+          Nav.push(const ResultFragment());
+          currentIndex++;
+          selectedNumbers.clear();
+          generateRandomNumber();
+          resultData.userAnswerList.clear();
+          // UniqueKey로 key를 변경하여 새로운 HomeFragment 생성
+          _homeFragmentKey = UniqueKey();
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,48 +97,58 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Question
-            currentIndex < 12
-                ? Expanded(
-                    flex: 4,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: context.appColors.divider),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: AnimatedSwitcher(
-                        duration: 300.ms,
-                        child: Center(
-                            key: ValueKey<int>(currentIndex),
-                            child: questionList[selectedNumbers[currentIndex]]
-                                .question
-                                .text
-                                .size(16)
-                                .make()),
-                      ),
+            if (currentIndex < 12)
+              Expanded(
+                flex: 4,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: context.appColors.divider),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: AnimatedSwitcher(
+                    duration: 300.ms,
+                    child: Center(
+                        key: ValueKey<int>(currentIndex),
+                        child: questionList[selectedNumbers[currentIndex]]
+                            .question
+                            .text
+                            .size(16)
+                            .make()),
+                  ),
+                ),
+              ).animate().fadeIn(duration: 300.ms)
+            else if (currentIndex == 12)
+              const Center(
+                child: Column(
+                  children: [
+                    CircularProgressIndicator(
+                      strokeWidth: 7,
                     ),
-                  ).animate().fadeIn(duration: 300.ms)
-                : Center(
-                    child: Container(
-                        child: Column(
-                      children: [
-                        "내 결과에서 확인!!".text.size(28).bold.make(),
-                        Tap(
-                          onTap: () {
-                            setState(() {
-                              currentIndex = 0;
-                              selectedNumbers.clear();
-                              generateRandomNumber();
-                              resultData.userAnswerList.clear();
-                              // UniqueKey로 key를 변경하여 새로운 HomeFragment 생성
-                              _homeFragmentKey = UniqueKey();
-                            });
-                          },
-                          child: "다시 하기".text.bold.size(20).make(),
-                        )
-                      ],
-                    )),
-                  ).animate().shake(duration: 600.ms, hz: 10),
+                  ],
+                ),
+              ),
+
+            if (currentIndex > 12)
+              Center(
+                child: Column(
+                  children: [
+                    Tap(
+                      onTap: () {
+                        setState(() {
+                          currentIndex = 0;
+                          selectedNumbers.clear();
+                          generateRandomNumber();
+                          resultData.userAnswerList.clear();
+                          // UniqueKey로 key를 변경하여 새로운 HomeFragment 생성
+                          _homeFragmentKey = UniqueKey();
+                        });
+                      },
+                      child: "다시 하기".text.bold.size(20).make(),
+                    )
+                  ],
+                ),
+              ).animate().shake(duration: 600.ms, hz: 10),
             currentIndex < 12
                 ? Expanded(
                     flex: 3,
@@ -139,7 +168,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                                     .answerType,
                               );
                               setState(() {
-                                currentIndex++;
+                                _incrementIndex();
                               });
                               if (currentIndex < 12) {
                                 generateRandomNumber();
@@ -163,9 +192,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                                     .answer2
                                     .answerType,
                               );
-                              setState(() {
-                                currentIndex++;
-                              });
+                              _incrementIndex();
                               if (currentIndex < 12) {
                                 generateRandomNumber();
                               }
