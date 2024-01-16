@@ -73,22 +73,22 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: ModeSwitch(
-              value: VxContextExtensions(context).isDarkMode,
-              onChanged: (value) {
-                ThemeUtil.toggleTheme(context);
-              },
-              height: 30,
-              activeThumbImage: Image.asset('$basePath/darkmode/moon.png'),
-              inactiveThumbImage: Image.asset('$basePath/darkmode/sun.png'),
-              activeThumbColor: Colors.transparent,
-              inactiveThumbColor: Colors.transparent,
-            ).pOnly(left: 20, right: 6),
-          ),
-        ],
+        // actions: [
+        //   MouseRegion(
+        //     cursor: SystemMouseCursors.click,
+        //     child: ModeSwitch(
+        //       value: VxContextExtensions(context).isDarkMode,
+        //       onChanged: (value) {
+        //         ThemeUtil.toggleTheme(context);
+        //       },
+        //       height: 30,
+        //       activeThumbImage: Image.asset('$basePath/darkmode/moon.png'),
+        //       inactiveThumbImage: Image.asset('$basePath/darkmode/sun.png'),
+        //       activeThumbColor: Colors.transparent,
+        //       inactiveThumbColor: Colors.transparent,
+        //     ).pOnly(left: 20, right: 6),
+        //   ),
+        // ],
         title: "성경속 인물 MBTI".text.make(),
       ),
       body: Padding(
