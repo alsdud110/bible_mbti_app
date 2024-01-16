@@ -1,8 +1,9 @@
+import 'package:bible_mbti_app/common/common.dart';
 import 'package:bible_mbti_app/screen/main/tab/tab_item.dart';
 import 'package:bible_mbti_app/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
-
-import '../../common/common.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:after_layout/after_layout.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -12,7 +13,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class MainScreenState extends State<MainScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AfterLayoutMixin {
   TabItem _currentTab = TabItem.home;
   final tabs = [TabItem.home, TabItem.result, TabItem.profile, TabItem.info];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
@@ -25,6 +26,13 @@ class MainScreenState extends State<MainScreen>
   bool get extendBody => true;
 
   static double get bottomNavigationBarBorderRadius => 30.0;
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    delay(() {
+      FlutterNativeSplash.remove();
+    }, 1500.ms);
+  }
 
   @override
   void initState() {
