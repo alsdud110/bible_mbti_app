@@ -1,4 +1,4 @@
-import 'package:bible_mbti_app/common/cli_common.dart';
+import 'package:bible_mbti_app/common/common.dart';
 import 'package:flutter/widgets.dart';
 
 extension AnimationControllerExtension on AnimationController {
