@@ -47,4 +47,10 @@ abstract class AbstractThemeColors {
   Color get blueButtonBackground => AppColors.darkBlue;
 
   Color get blurColor => AppColors.darkGrey;
+
+  Color get greyContainer => AppColors.brightGrey;
+
+  Color get infoText => const Color.fromARGB(255, 75, 75, 75);
+
+  Color get infoTextBackgound => Colors.white;
 }

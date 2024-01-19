@@ -1,3 +1,4 @@
+import 'package:bible_mbti_app/common/dart/extension/datetime_extension.dart';
 import 'package:get/get.dart';
 
 abstract mixin class ResultTypeProvier {
@@ -7,10 +8,17 @@ abstract mixin class ResultTypeProvier {
 class ResultType extends GetxController {
   List<String> userAnswerList = [];
   RxString result = "".obs;
+  RxList<Map<String, String>> resultListMap = <Map<String, String>>[].obs;
 
   void getMBTI() {
     List<String> resultList = extractMultipleOccurrences(userAnswerList);
     result.value = finalResult(resultList).join();
+    String nowYmd = DateTime.now().formattedDateCustom;
+
+    Map<String, String> resultMap = {};
+    resultMap["reg_dt"] = nowYmd;
+    resultMap["mbti"] = result.value;
+    resultListMap.add(resultMap);
   }
 
   List<String> extractMultipleOccurrences(List<String> userAnswerList) {
@@ -29,8 +37,6 @@ class ResultType extends GetxController {
   }
 
   List<String> finalResult(List<String> resultList) {
-    print(resultList);
-    print(resultList.length);
     List<String> resultFinalList = List<String>.filled(4, "");
     for (int i = 0; i < resultList.length; i++) {
       if (resultList[i] == "E" || resultList[i] == "I") {

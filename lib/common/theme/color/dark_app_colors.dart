@@ -45,4 +45,13 @@ class DarkAppColors extends AbstractThemeColors {
 
   @override
   Color get blurColor => AppColors.brightGrey;
+
+  @override
+  Color get greyContainer => AppColors.darkGrey;
+
+  @override
+  Color get infoText => AppColors.middleGrey;
+
+  @override
+  Color get infoTextBackgound => Colors.black;
 }
