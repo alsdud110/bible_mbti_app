@@ -15,9 +15,11 @@ class ResultType extends GetxController {
 
   void getMBTI() async {
     String? storedJsonList = Prefs.mbtiLogRx.get();
-    List<Map<String, dynamic>> storedList = storedJsonList != null
-        ? List<Map<String, dynamic>>.from(jsonDecode(storedJsonList))
-        : [];
+    List<Map<String, dynamic>> storedList = [];
+
+    if (storedJsonList.isNotEmpty) {
+      storedList = List<Map<String, dynamic>>.from(jsonDecode(storedJsonList));
+    }
 
     if (userAnswerList.isNotEmpty) {
       List<String> resultList = extractMultipleOccurrences(userAnswerList);
@@ -29,15 +31,17 @@ class ResultType extends GetxController {
       resultMap["mbti"] = result.value;
       resultListMap.add(resultMap);
 
+      storedList = [];
       // 새로운 결과 추가
       storedList.addAll(resultListMap);
+
+      // Json 형식의 문자열로 변환
+      String jsonList = jsonEncode(storedList);
+
+      // SharedPreferences에 저장
+      await Prefs.mbtiLogRx.set(jsonList);
     }
 
-    // Json 형식의 문자열로 변환
-    String jsonList = jsonEncode(storedList);
-
-    // SharedPreferences에 저장
-    await Prefs.mbtiLogRx.set(jsonList);
     resultListMap
         .assignAll(storedList.map((item) => Map<String, String>.from(item)));
   }

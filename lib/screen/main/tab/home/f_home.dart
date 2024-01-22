@@ -1,8 +1,6 @@
 import 'dart:math';
 
 import 'package:bible_mbti_app/common/common.dart';
-import 'package:bible_mbti_app/common/theme/theme_util.dart';
-import 'package:bible_mbti_app/common/widget/w_mode_switch.dart';
 import 'package:bible_mbti_app/screen/dialog/d_message.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/w_anser_button.dart';
