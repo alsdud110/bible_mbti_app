@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:bible_mbti_app/common/dart/extension/datetime_extension.dart';
+import 'package:bible_mbti_app/common/data/preference/prefs.dart';
 import 'package:get/get.dart';
 
 abstract mixin class ResultTypeProvier {
@@ -10,15 +13,33 @@ class ResultType extends GetxController {
   RxString result = "".obs;
   RxList<Map<String, String>> resultListMap = <Map<String, String>>[].obs;
 
-  void getMBTI() {
-    List<String> resultList = extractMultipleOccurrences(userAnswerList);
-    result.value = finalResult(resultList).join();
-    String nowYmd = DateTime.now().formattedDateCustom;
+  void getMBTI() async {
+    String? storedJsonList = Prefs.mbtiLogRx.get();
+    List<Map<String, dynamic>> storedList = storedJsonList != null
+        ? List<Map<String, dynamic>>.from(jsonDecode(storedJsonList))
+        : [];
 
-    Map<String, String> resultMap = {};
-    resultMap["reg_dt"] = nowYmd;
-    resultMap["mbti"] = result.value;
-    resultListMap.add(resultMap);
+    if (userAnswerList.isNotEmpty) {
+      List<String> resultList = extractMultipleOccurrences(userAnswerList);
+      result.value = finalResult(resultList).join();
+      String nowYmd = DateTime.now().formattedDateCustom;
+
+      Map<String, String> resultMap = {};
+      resultMap["reg_dt"] = nowYmd;
+      resultMap["mbti"] = result.value;
+      resultListMap.add(resultMap);
+
+      // 새로운 결과 추가
+      storedList.addAll(resultListMap);
+    }
+
+    // Json 형식의 문자열로 변환
+    String jsonList = jsonEncode(storedList);
+
+    // SharedPreferences에 저장
+    await Prefs.mbtiLogRx.set(jsonList);
+    resultListMap
+        .assignAll(storedList.map((item) => Map<String, String>.from(item)));
   }
 
   List<String> extractMultipleOccurrences(List<String> userAnswerList) {

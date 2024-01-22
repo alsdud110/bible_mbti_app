@@ -31,6 +31,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
   void initState() {
     Get.put(ResultType());
     generateRandomNumber();
+    resultData.getMBTI();
     // TODO: implement initState
     super.initState();
   }

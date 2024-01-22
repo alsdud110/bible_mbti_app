@@ -43,7 +43,7 @@ dependencies:
   velocity_x: ^4.1.0
 
   #data
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.2.2
   isar: 3.1.0
   isar_flutter_libs: 3.1.0
 

@@ -21,7 +21,7 @@ class MbtiLog extends StatelessWidget with ResultTypeProvier {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ...resultData.resultListMap
+                ...resultData.resultListMap.reversed
                     .map(
                       (e) => Padding(
                         padding: const EdgeInsets.all(12.0),
