@@ -16,6 +16,7 @@ class MbtiDetail extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         scrolledUnderElevation: 0.0,
+        title: "${resultMap[mbti]?.mbti}".text.bold.size(24).make(),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -37,6 +38,7 @@ class MbtiDetail extends StatelessWidget {
                       char3: "${resultMap[mbti]?.char3}",
                       desc1: "${resultMap[mbti]?.desc1}",
                       desc2: "${resultMap[mbti]?.desc2}",
+                      isProfile: true,
                     ),
                   ],
                 ),

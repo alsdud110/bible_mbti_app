@@ -9,6 +9,7 @@ class MbtiInfo extends StatelessWidget {
   final String char3;
   final String desc1;
   final String desc2;
+  final bool isProfile;
   const MbtiInfo(
       {super.key,
       required this.mbti,
@@ -17,15 +18,21 @@ class MbtiInfo extends StatelessWidget {
       required this.char2,
       required this.char3,
       required this.desc1,
-      required this.desc2});
+      required this.desc2,
+      bool? isProfile})
+      : isProfile = isProfile ?? false;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         children: [
-          mbti.text.bold.size(28).make().pOnly(top: 16),
-          person.text.bold.size(20).make(),
+          isProfile
+              ? const SizedBox()
+              : mbti.text.bold.size(28).make().pOnly(top: 16),
+          isProfile
+              ? person.text.bold.size(28).make().pOnly(top: 20)
+              : person.text.bold.size(28).make(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
