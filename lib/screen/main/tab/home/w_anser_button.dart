@@ -19,7 +19,7 @@ class AnswerButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           decoration: BoxDecoration(
             color: context.appColors.inActivate,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(35),
           ),
           child: Center(child: answer.text.size(16).maxLines(2).make()),
         ),

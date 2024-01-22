@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:bible_mbti_app/common/common.dart';
 import 'package:bible_mbti_app/screen/dialog/d_message.dart';
+import 'package:bible_mbti_app/screen/main/tab/home/s_home.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/vo/result_type.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/w_anser_button.dart';
-import 'package:bible_mbti_app/screen/main/tab/result/f_result.dart';
 import 'package:flutter/material.dart';
 import 'package:bible_mbti_app/screen/main/tab/home/question_dummies.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -55,9 +55,9 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
       currentIndex++;
       if (currentIndex == 12) {
         // 만약 currentIndex가 12가 되면 2초 후에 네비게이션
-        Future.delayed(1500.ms, () {
-          Nav.push(const ResultFragment());
-          currentIndex++;
+        Future.delayed(1400.ms, () {
+          currentIndex = 0;
+          Nav.push(const HomeScreen());
           selectedNumbers.clear();
           generateRandomNumber();
           resultData.userAnswerList.clear();
@@ -72,22 +72,6 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // actions: [
-        //   MouseRegion(
-        //     cursor: SystemMouseCursors.click,
-        //     child: ModeSwitch(
-        //       value: VxContextExtensions(context).isDarkMode,
-        //       onChanged: (value) {
-        //         ThemeUtil.toggleTheme(context);
-        //       },
-        //       height: 30,
-        //       activeThumbImage: Image.asset('$basePath/darkmode/moon.png'),
-        //       inactiveThumbImage: Image.asset('$basePath/darkmode/sun.png'),
-        //       activeThumbColor: Colors.transparent,
-        //       inactiveThumbColor: Colors.transparent,
-        //     ).pOnly(left: 20, right: 6),
-        //   ),
-        // ],
         title: "성경속 인물 MBTI".text.make(),
       ),
       body: Padding(
@@ -127,27 +111,6 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                   ],
                 ),
               ),
-
-            if (currentIndex > 12)
-              Center(
-                child: Column(
-                  children: [
-                    Tap(
-                      onTap: () {
-                        setState(() {
-                          currentIndex = 0;
-                          selectedNumbers.clear();
-                          generateRandomNumber();
-                          resultData.userAnswerList.clear();
-                          // UniqueKey로 key를 변경하여 새로운 HomeFragment 생성
-                          _homeFragmentKey = UniqueKey();
-                        });
-                      },
-                      child: "다시 하기".text.bold.size(20).make(),
-                    )
-                  ],
-                ),
-              ).animate().shake(duration: 600.ms, hz: 10),
             currentIndex < 12
                 ? Expanded(
                     flex: 3,
@@ -167,7 +130,9 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                                     .answerType,
                               );
                               setState(() {
-                                _incrementIndex();
+                                if (currentIndex < 12) {
+                                  _incrementIndex();
+                                }
                               });
                               if (currentIndex < 12) {
                                 generateRandomNumber();
@@ -191,7 +156,11 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
                                     .answer2
                                     .answerType,
                               );
-                              _incrementIndex();
+                              setState(() {
+                                if (currentIndex < 12) {
+                                  _incrementIndex();
+                                }
+                              });
                               if (currentIndex < 12) {
                                 generateRandomNumber();
                               }
