@@ -1,3 +1,4 @@
+import 'package:bible_mbti_app/common/dart/extension/context_extension.dart';
 import 'package:bible_mbti_app/common/data/preference/prefs.dart';
 import 'package:bible_mbti_app/common/theme/custom_theme.dart';
 import 'package:bible_mbti_app/common/theme/theme_util.dart';
@@ -37,14 +38,14 @@ class _SettingThemeState extends State<SettingTheme> {
                 children: [
                   Icon(Icons.sunny,
                       color: context.isDarkMode == false
-                          ? Colors.blue
+                          ? context.appColors.confirmText
                           : Colors.white),
                   width20,
                   "밝게"
                       .text
                       .size(16)
                       .color(context.isDarkMode == false
-                          ? Colors.blue
+                          ? context.appColors.confirmText
                           : Colors.white)
                       .make(),
                   const EmptyExpanded(),
@@ -52,7 +53,7 @@ class _SettingThemeState extends State<SettingTheme> {
                     Icon(
                       Icons.check,
                       color: context.isDarkMode == false
-                          ? Colors.blue
+                          ? context.appColors.confirmText
                           : Colors.white,
                     ).pOnly(right: 20),
                 ],
@@ -79,14 +80,14 @@ class _SettingThemeState extends State<SettingTheme> {
                 children: [
                   Icon(CupertinoIcons.moon_fill,
                       color: context.isDarkMode == true
-                          ? Colors.blue
+                          ? context.appColors.confirmText
                           : Colors.black),
                   width20,
                   "어둡게"
                       .text
                       .size(16)
                       .color(context.isDarkMode == true
-                          ? Colors.blue
+                          ? context.appColors.confirmText
                           : Colors.black)
                       .make(),
                   const EmptyExpanded(),
@@ -94,7 +95,7 @@ class _SettingThemeState extends State<SettingTheme> {
                     Icon(
                       Icons.check,
                       color: context.isDarkMode == true
-                          ? Colors.blue
+                          ? context.appColors.confirmText
                           : Colors.black,
                     ).pOnly(right: 20),
                 ],
