@@ -1,3 +1,4 @@
+import 'package:bible_mbti_app/common/common.dart';
 import 'package:bible_mbti_app/common/dart/extension/context_extension.dart';
 import 'package:bible_mbti_app/common/widget/w_tap.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,9 @@ class AnswerButton extends StatelessWidget {
             color: context.appColors.inActivate,
             borderRadius: BorderRadius.circular(35),
           ),
-          child: Center(child: answer.text.size(16).maxLines(2).make()),
+          child: Center(child: answer.text.size(16).maxLines(2).make())
+              .animate()
+              .fadeIn(duration: 1200.ms),
         ),
       ),
     );
