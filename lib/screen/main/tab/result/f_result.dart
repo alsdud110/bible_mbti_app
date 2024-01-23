@@ -27,7 +27,7 @@ class _ResultFragmentState extends State<ResultFragment>
               : "나의 결과는?"
                   .text
                   .bold
-                  .size(30)
+                  .size(26)
                   .bold
                   .make()
                   .animate()

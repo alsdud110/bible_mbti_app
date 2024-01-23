@@ -49,6 +49,7 @@ class _HomeFragment2State extends State<HomeFragment2> with ResultTypeProvier {
 
   void _incrementIndex() {
     setState(() {
+      controller.nextPage(duration: 300.ms, curve: Curves.easeIn);
       currentIndex++;
       if (currentIndex == 12) {
         resultData.getMBTI();
@@ -86,86 +87,96 @@ class _HomeFragment2State extends State<HomeFragment2> with ResultTypeProvier {
                         controller: controller,
                         itemCount: questionList.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: context.appColors.divider),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  flex: 3,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
-                                    child: questionList[selectedNumbers[index]]
-                                        .question
-                                        .text
-                                        .size(16)
-                                        .make()
-                                        .centered()
-                                        .animate()
-                                        .fadeIn(duration: 1200.ms),
+                          return Opacity(
+                            opacity: index == currentIndex ? 1.0 : 0.2,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: context.appColors.divider),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    flex: 3,
+                                    child: Opacity(
+                                      opacity:
+                                          index == currentIndex ? 1.0 : 0.2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20.0),
+                                        child:
+                                            questionList[selectedNumbers[index]]
+                                                .question
+                                                .text
+                                                .size(16)
+                                                .make()
+                                                .centered()
+                                                .animate()
+                                                .fadeIn(duration: 1200.ms),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12.0),
-                                  child: AnswerButton(
-                                      onTap: () {
-                                        resultData.userAnswerList.add(
-                                          questionList[
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0),
+                                    child: Opacity(
+                                      opacity:
+                                          index == currentIndex ? 1.0 : 0.2,
+                                      child: AnswerButton(
+                                          onTap: () {
+                                            resultData.userAnswerList.add(
+                                              questionList[selectedNumbers[
+                                                      currentIndex]]
+                                                  .answer1
+                                                  .answerType,
+                                            );
+                                            setState(() {
+                                              if (currentIndex < 12) {
+                                                _incrementIndex();
+                                              }
+                                            });
+                                            if (currentIndex < 12) {
+                                              generateRandomNumber();
+                                            }
+                                          },
+                                          answer: questionList[
                                                   selectedNumbers[currentIndex]]
                                               .answer1
-                                              .answerType,
-                                        );
-                                        setState(() {
-                                          if (currentIndex < 12) {
-                                            _incrementIndex();
-                                          }
-                                        });
-                                        if (currentIndex < 12) {
-                                          generateRandomNumber();
-                                        }
-                                        controller.nextPage(
-                                            duration: 300.ms,
-                                            curve: Curves.easeIn);
-                                      },
-                                      answer: questionList[
-                                              selectedNumbers[currentIndex]]
-                                          .answer1
-                                          .answer),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12.0),
-                                  child: AnswerButton(
-                                      onTap: () {
-                                        resultData.userAnswerList.add(
-                                          questionList[
+                                              .answer),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0),
+                                    child: Opacity(
+                                      opacity:
+                                          index == currentIndex ? 1.0 : 0.2,
+                                      child: AnswerButton(
+                                          onTap: () {
+                                            resultData.userAnswerList.add(
+                                              questionList[selectedNumbers[
+                                                      currentIndex]]
+                                                  .answer2
+                                                  .answerType,
+                                            );
+                                            setState(() {
+                                              if (currentIndex < 12) {
+                                                _incrementIndex();
+                                              }
+                                            });
+                                            if (currentIndex < 12) {
+                                              generateRandomNumber();
+                                            }
+                                          },
+                                          answer: questionList[
                                                   selectedNumbers[currentIndex]]
                                               .answer2
-                                              .answerType,
-                                        );
-                                        setState(() {
-                                          if (currentIndex < 12) {
-                                            _incrementIndex();
-                                          }
-                                        });
-                                        if (currentIndex < 12) {
-                                          generateRandomNumber();
-                                        }
-                                        controller.nextPage(
-                                            duration: 300.ms,
-                                            curve: Curves.easeIn);
-                                      },
-                                      answer: questionList[
-                                              selectedNumbers[currentIndex]]
-                                          .answer2
-                                          .answer),
-                                ),
-                              ],
+                                              .answer),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },
