@@ -71,7 +71,7 @@ class _HomeFragment2State extends State<HomeFragment2> with ResultTypeProvier {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: "성경속 인물 MBTI".text.make(),
+        title: "성경 속 인물 MBTI".text.make(),
       ),
       body: currentIndex < 12
           ? Column(

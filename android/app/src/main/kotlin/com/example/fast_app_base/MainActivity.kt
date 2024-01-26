@@ -1,4 +1,4 @@
-package com.example.bible_mbti_app
+package com.myhwang.bible_mbti_app
 
 import io.flutter.embedding.android.FlutterActivity
 
