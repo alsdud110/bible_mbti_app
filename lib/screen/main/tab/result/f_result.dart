@@ -21,6 +21,7 @@ class _ResultFragmentState extends State<ResultFragment>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Obx(
           () => resultData.result.isEmpty
               ? "나의 성경 인물 속 MBTI는?".text.make()

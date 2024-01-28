@@ -14,6 +14,7 @@ class MbtiDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: true,
         scrolledUnderElevation: 0.0,
         title: "${resultMap[mbti]?.mbti}".text.bold.size(24).make(),

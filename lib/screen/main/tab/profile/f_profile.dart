@@ -16,6 +16,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: "16인의 성경인물".text.make(),
         scrolledUnderElevation: 0.0,
       ),

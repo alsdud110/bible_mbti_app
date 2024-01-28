@@ -20,7 +20,7 @@ class _SettingThemeState extends State<SettingTheme> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: "테마".text.make()),
+      appBar: AppBar(title: "테마".text.make(),centerTitle: true,),
       body: Column(
         children: [
           Tap(

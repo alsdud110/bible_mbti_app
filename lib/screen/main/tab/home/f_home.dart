@@ -72,6 +72,7 @@ class _HomeFragmentState extends State<HomeFragment> with ResultTypeProvier {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          centerTitle: true,
         title: "성경속 인물 MBTI".text.make(),
       ),
       body: Padding(

@@ -12,7 +12,7 @@ class InfoFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: "설정".text.make()),
+      appBar: AppBar(title: "설정".text.make(),centerTitle: true,),
       body: Column(
         children: [
           MenuContainer(
