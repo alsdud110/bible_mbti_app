@@ -46,9 +46,9 @@ class MainScreenState extends State<MainScreen>
         extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
         // drawer: const MenuDrawer(),
         body: Container(
-          color: context.appColors.seedColor,
+          // color: context.appColors.seedColor,
           padding: EdgeInsets.only(
-              bottom: extendBody ? 100 - bottomNavigationBarBorderRadius : 0),
+              bottom: extendBody ? 90 - bottomNavigationBarBorderRadius : 0),
           child: pages,
         ),
         bottomNavigationBar: _buildBottomNavigationBar(context),
