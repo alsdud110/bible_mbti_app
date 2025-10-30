@@ -25,7 +25,7 @@ class _HomeFragment2State extends State<HomeFragment2> with ResultTypeProvier {
   @override
   void initState() {
     Get.put(ResultType());
-    generateRandomNumber();
+    generateRandomNumbers();
     resultData.getMBTI();
     // TODO: implement initState
     super.initState();
@@ -33,6 +33,18 @@ class _HomeFragment2State extends State<HomeFragment2> with ResultTypeProvier {
 
   int currentIndex = 0;
   List<int> selectedNumbers = [];
+
+  void generateRandomNumbers() {
+    Random random = Random();
+    selectedNumbers.clear();
+
+    while (selectedNumbers.length < 12) {
+      int randomNumber = random.nextInt(12);
+      if (!selectedNumbers.contains(randomNumber)) {
+        selectedNumbers.add(randomNumber);
+      }
+    }
+  }
 
   void generateRandomNumber() {
     Random random = Random();
@@ -57,8 +69,7 @@ class _HomeFragment2State extends State<HomeFragment2> with ResultTypeProvier {
         Future.delayed(1400.ms, () {
           currentIndex = 0;
           Nav.push(const HomeScreen());
-          selectedNumbers.clear();
-          generateRandomNumber();
+          generateRandomNumbers();
           resultData.userAnswerList.clear();
         });
       }
@@ -137,9 +148,6 @@ class _HomeFragment2State extends State<HomeFragment2> with ResultTypeProvier {
                                                 _incrementIndex();
                                               }
                                             });
-                                            if (currentIndex < 12) {
-                                              generateRandomNumber();
-                                            }
                                           },
                                           answer: questionList[
                                                   selectedNumbers[currentIndex]]
@@ -166,9 +174,6 @@ class _HomeFragment2State extends State<HomeFragment2> with ResultTypeProvier {
                                                 _incrementIndex();
                                               }
                                             });
-                                            if (currentIndex < 12) {
-                                              generateRandomNumber();
-                                            }
                                           },
                                           answer: questionList[
                                                   selectedNumbers[currentIndex]]

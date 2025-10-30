@@ -1,11 +1,32 @@
-include ':app'
+// settings.gradle
 
-def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
-def properties = new Properties()
+pluginManagement {
+    // local.properties 에서 flutter SDK 경로 읽어오기
+    def properties = new Properties()
+    file("local.properties").withReader("UTF-8") { reader ->
+        properties.load(reader)
+    }
+    def flutterSdkPath = properties.getProperty("flutter.sdk")
+    assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
 
-assert localPropertiesFile.exists()
-localPropertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+    // Flutter Gradle 플러그인 포함
+    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
-def flutterSdkPath = properties.getProperty("flutter.sdk")
-assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
-apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    // Android Gradle Plugin 버전(프로젝트 build.gradle 의 classpath 와 맞춰야 함)
+    id("com.android.application") version "8.6.1" apply false
+    // Kotlin Gradle Plugin 버전 (ext.kotlin_version 과 동일하게)
+    id("org.jetbrains.kotlin.android") version "2.1.0" apply false
+    // Flutter 플러그인 로더
+    id("dev.flutter.flutter-plugin-loader") version "1.0.0"
+}
+
+rootProject.name = "bible_mbti_app"
+include(":app")
